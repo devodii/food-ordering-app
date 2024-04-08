@@ -38,7 +38,7 @@ export default function TabLayout() {
           ),
           headerShown: false,
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/cart" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
