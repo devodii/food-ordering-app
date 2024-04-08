@@ -14,7 +14,7 @@ import { CartProvider } from "../providers/CartProvider";
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from "expo-router";
 
 export const unstable_settings = {
@@ -56,6 +56,7 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <CartProvider>
         <Stack>
+          <Stack.Screen name="(admin)" options={{ headerShown: false }} />
           <Stack.Screen name="(user)" options={{ headerShown: false }} />
           <Stack.Screen name="cart" options={{ presentation: "modal" }} />
         </Stack>
