@@ -8,12 +8,14 @@ type CartType = {
   items: CartItem[];
   addItem: (product: Product, size: CartItem["size"]) => void;
   updateQuantity: (itemId: string, amount: UpdateAmount) => void;
+  total: number;
 };
 
 const CartContext = React.createContext<CartType>({
   items: [],
   addItem: () => {},
   updateQuantity: () => {},
+  total: 0,
 });
 
 const CartProvider = ({ children }: React.PropsWithChildren) => {
@@ -51,8 +53,15 @@ const CartProvider = ({ children }: React.PropsWithChildren) => {
     );
   };
 
+  const total = items.reduce(
+    (sum, item) => (sum += item.product.price * item.quantity),
+    0
+  );
+
   return (
-    <CartContext.Provider value={{ items, addItem: onAddItem, updateQuantity }}>
+    <CartContext.Provider
+      value={{ items, addItem: onAddItem, updateQuantity, total }}
+    >
       {children}
     </CartContext.Provider>
   );
